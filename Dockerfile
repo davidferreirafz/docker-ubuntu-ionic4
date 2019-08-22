@@ -38,7 +38,7 @@ WORKDIR /opt/android
 RUN wget -qO- https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get install -y nodejs && \
     apt-get remove -y gradle  && \
-    wget https://services.gradle.org/distributions/gradle-5.5.1-bin.zip -P /opt
+    wget https://services.gradle.org/distributions/gradle-5.5.1-bin.zip -P /opt && \
     unzip -d /opt/gradle /opt/gradle-5.5.1-bin.zip && \
     rm -rf /opt/android/platforms/android-10 && \
     rm -rf /opt/android/platforms/android-15 && \
