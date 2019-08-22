@@ -58,6 +58,7 @@ RUN wget -qO- https://deb.nodesource.com/setup_10.x | bash - && \
 
 #Criando diretorio para o codigo fonte
 VOLUME ["/opt/source"]
- 
+
+EXPOSE 81000/tcp 
 
 WORKDIR /opt/source
