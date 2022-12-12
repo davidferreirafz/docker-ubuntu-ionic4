@@ -1,0 +1,305 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "s400-restricoes-servico",
+    "description": "Servico de Restricoes Internas do S400",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://d001mfd1/s400-restricoes-servico/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operations about user"
+    }
+  ],
+  "paths": {
+    "/restricoes/automatica": {
+      "post": {
+        "summary": "Inserir restricoes",
+        "description": "Inserir restricoes automaticamente",
+        "operationId": "inserirAutomatica",
+        "requestBody": {
+          "description": "Inserir restricoes automaticamente",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestricaoAutomaticaTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restricao"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "405": {
+            "description": "Exception"
+          }
+        }
+      },
+      "put": {
+        "summary": "Baixar restricoes",
+        "description": "Baixar restricoes automaticamente",
+        "operationId": "baixarAutomatica",
+        "requestBody": {
+          "description": "Baixar restricoes automaticamente",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestricaoAutomaticaBaixaTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restricao"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "405": {
+            "description": "Exception"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RestricaoAutomaticaTO": {
+        "type": "object",
+        "properties": {
+          "codigoCliente": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numeroCic": {
+            "type": "string"
+          },
+          "codigoRestricao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "motivo": {
+            "type": "string"
+          },
+          "numeroOperacao": {
+            "type": "string"
+          },
+          "dataLimite": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "codigoSistema": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigoUnidadeRestritora": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "RestricaoAutomaticaBaixaTO": {
+        "type": "object",
+        "properties": {
+          "codigoCliente": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numeroCic": {
+            "type": "string"
+          },
+          "codigoRestricao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numeroOperacao": {
+            "type": "string"
+          },
+          "motivo": {
+            "type": "string"
+          },
+          "dataAtualizacao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "codigoSistema": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigoUnidadeRestritora": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Cliente": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "cpfCnpj": {
+            "type": "string"
+          },
+          "tipoPessoa": {
+            "type": "string"
+          },
+          "codigoUnidadeResponsavel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "indicadorSituacao": {
+            "type": "string"
+          },
+          "tipoRelacionamento": {
+            "type": "string"
+          },
+          "nomeUnidadeResponsavel": {
+            "type": "string"
+          },
+          "codigoUnidadeAuxiliar": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nomeUnidadeAuxiliar": {
+            "type": "string"
+          }
+        }
+      },
+      "Restricao": {
+        "type": "object",
+        "properties": {
+          "numeroCicBase": {
+            "type": "string"
+          },
+          "codigoCliente": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "codigoRestricao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataAtualizacao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "codigoUnidadeRestricao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "siglaModuloRestricao": {
+            "type": "string"
+          },
+          "siglaModalidadeRestricao": {
+            "type": "string"
+          },
+          "numeroConta": {
+            "type": "string"
+          },
+          "codigoClienteGeradorRestricao": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nomePessoaRestricao": {
+            "type": "string"
+          },
+          "dataLimite": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dataReabilitacao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "codigoUsuarioRestritor": {
+            "type": "string"
+          },
+          "codigoUsuarioDesempedidor": {
+            "type": "string"
+          },
+          "dataDesempedimento": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "justificativaBaixa": {
+            "type": "string"
+          },
+          "motivo": {
+            "type": "string"
+          },
+          "indicadorRestricaoNegativa": {
+            "type": "string"
+          },
+          "codigoUnidadeResponsavel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigoUnidadeResponsavelBaixa": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "indicadorSituacao": {
+            "type": "string"
+          },
+          "codigoUsuarioAtualizador": {
+            "type": "string"
+          },
+          "dataHoraAtualizacao": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "indicadorSic": {
+            "type": "string"
+          },
+          "codigoClienteSicad": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numeroCic": {
+            "type": "string"
+          },
+          "cliente" : {
+            "$ref" : "#/components/schemas/Cliente"
+          }
+        }
+      }
+    }
+  }
+}
